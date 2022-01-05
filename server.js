@@ -6,7 +6,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3000;
 const { Workout } = require("./models/workout.js");
 require("dotenv").config();
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
@@ -36,7 +36,6 @@ app.get("/stats", (req, res) => {
 
 app.post("/api/workouts", ({ body }, res) => {
   const workout = new Workout(body);
-
   Workout.create(workout)
     .then((dbWorkout) => {
       res.json(dbWorkout);
