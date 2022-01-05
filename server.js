@@ -5,9 +5,14 @@ const app = express();
 const path = require("path");
 const PORT = process.env.PORT || 3000;
 const { Workout } = require("./models/workout.js");
-
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
+require("dotenv").config();
+mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
+  useCreateIndex: true,
+});
+const connection = mongoose.connection;
+connection.once("open", () => {
+  console.log("MongoDB works");
 });
 
 app.use(logger("dev"));
