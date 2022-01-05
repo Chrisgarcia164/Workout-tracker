@@ -9,6 +9,8 @@ require("dotenv").config();
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
   useCreateIndex: true,
+  useFindAndModify: false,
+  useUnifiedTopology: true,
 });
 const connection = mongoose.connection;
 connection.once("open", () => {
