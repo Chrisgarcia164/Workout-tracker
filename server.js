@@ -6,7 +6,7 @@ const path = require("path");
 const PORT = process.env.PORT || 3000;
 const { Workout } = require("./models/workout.js");
 require("dotenv").config();
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
   useCreateIndex: true,
 });
